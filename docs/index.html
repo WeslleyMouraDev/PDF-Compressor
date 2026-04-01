@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Compressor Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1f6aa5',
+                        dark: '#121212',
+                        card: '#1e1e1e'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at top, #1e3a8a 0%, #121212 40%);
+        }
+    </style>
+</head>
+<body class="bg-dark text-white min-h-screen hero-bg">
+
+    <!-- Header -->
+    <header class="container mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-xl font-bold uppercase shadow-lg shadow-blue-500/30">
+                PDF
+            </div>
+            <span class="text-xl font-bold tracking-wide">Compressor Premium</span>
+        </div>
+        <a href="https://github.com/WeslleyMouraDev/PDF-Compressor" target="_blank" class="hover:text-blue-400 transition-colors">Ver no GitHub</a>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 pt-20 pb-16 text-center max-w-4xl relative z-10">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+            Menos Peso.<br/>
+            <span class="gradient-text">Máxima Eficiência.</span>
+        </h1>
+        <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            A ferramenta desktop definitiva para transformar PDFs gigantescos gerados por sistemas (como <em>html2canvas</em>) em arquivos incrivelmente leves (Redução de >90%) sem depender de envios por nuvem.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="PDF%20Compressor.exe" download class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                Baixar para Windows (.exe)
+            </a>
+            <a href="#tutorial" class="bg-card hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-full border border-gray-700 transition-all hover:border-gray-500">
+                Ver Tutorial Completo
+            </a>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="container mx-auto px-6 py-20 relative z-10">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-card p-8 rounded-3xl border border-gray-800 shadow-xl hover:border-blue-500/50 transition-colors">
+                <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6 text-2xl">⚡</div>
+                <h3 class="text-xl font-bold mb-3">Ultrarrápido & Offline</h3>
+                <p class="text-gray-400">Processado 100% no seu computador usando o poder oculto do Ghostscript. Sem limites de tamanho, sem internet necessária.</p>
+            </div>
+            <div class="bg-card p-8 rounded-3xl border border-gray-800 shadow-xl hover:border-blue-500/50 transition-colors">
+                <div class="w-12 h-12 bg-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center mb-6 text-2xl">📉</div>
+                <h3 class="text-xl font-bold mb-3">Compressão Extrema</h3>
+                <p class="text-gray-400">Ajuste fino focado em imagens extraídas. Transforme 400MB facilmente em 30MB através da reamostragem sub-pixel agressiva.</p>
+            </div>
+            <div class="bg-card p-8 rounded-3xl border border-gray-800 shadow-xl hover:border-blue-500/50 transition-colors">
+                <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center mb-6 text-2xl">✨</div>
+                <h3 class="text-xl font-bold mb-3">Interface Premium</h3>
+                <p class="text-gray-400">Desenvolvido em Python com CustomTkinter. Esqueça terminais confusos, experimente um Dark Theme fluído com barra de previsão exata.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section id="tutorial" class="bg-[#191919] border-t border-b border-gray-800 py-24 relative z-10">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold mb-10 text-center">Como Instalar e Usar</h2>
+            
+            <div class="space-y-8">
+                <!-- Step 1 -->
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">1</div>
+                    <div class="pt-2">
+                        <h4 class="text-xl font-semibold mb-2">Instale o Motor Ghostscript (Obrigatório)</h4>
+                        <p class="text-gray-400 mb-2">O compressor não funcionará na sua taxa máxima sem este motor matemático gratuito instalado passivamente no seu sistema Windows.</p>
+                        <a href="https://ghostscript.com/releases/gsdnld.html" target="_blank" class="text-blue-400 hover:text-blue-300 underline text-sm">Baixar o Ghostscript Core</a>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">2</div>
+                    <div class="pt-2">
+                        <h4 class="text-xl font-semibold mb-2">Baixe o Executável (.exe)</h4>
+                        <p class="text-gray-400">Baixe no botão acima a versão pré-compilada, dispensando a instalação de Python ou dependências e abra imediatamente (PDF Compressor.exe).</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">3</div>
+                    <div class="pt-2">
+                        <h4 class="text-xl font-semibold mb-2">Selecione seu modo de segurança</h4>
+                        <p class="text-gray-400 border-l-2 border-gray-700 pl-4 py-2 mt-2">
+                            <strong class="text-white block mb-1">Modo Leve / Médio:</strong> Ideal para reduzir PDFs padronizados com poucas imagens, mantendo resolução total.<br/><br/>
+                            <strong class="text-white block mb-1">Modo Extremo:</strong> Acionado com algoritmo `Subsample` 85-DPI agressivo feito perfeitamente para arquivos gigas provenientes de HTML2Canvas / JPEGs massivos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer class="container mx-auto px-6 py-12 text-center text-gray-500">
+        <p>&copy; 2026 Desenvolvido com Antigravity • Weslley Moura Dev</p>
+    </footer>
+
+</body>
+</html>

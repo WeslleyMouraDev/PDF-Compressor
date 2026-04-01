@@ -69,9 +69,13 @@ def compress_pdf(input_path, output_path, level="media", progress_callback=None)
     if level == "extrema":
         base_cmd.extend([
             "-dPDFSETTINGS=/screen", 
-            "-dColorImageResolution=90",
-            "-dGrayImageResolution=90",
-            "-dMonoImageResolution=90"
+            "-dColorImageResolution=85",
+            "-dGrayImageResolution=85",
+            "-dMonoImageResolution=85",
+            "-dColorImageDownsampleThreshold=1.0",
+            "-dGrayImageDownsampleThreshold=1.0",
+            "-dColorImageDownsampleType=/Subsample",
+            "-dGrayImageDownsampleType=/Subsample"
         ])
     elif level == "media":
         base_cmd.extend([
