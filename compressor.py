@@ -69,29 +69,29 @@ def compress_pdf(input_path, output_path, level="media", progress_callback=None)
     if level == "extrema":
         base_cmd.extend([
             "-dPDFSETTINGS=/screen", 
-            "-dColorImageResolution=85",
-            "-dGrayImageResolution=85",
-            "-dMonoImageResolution=85",
-            "-dColorImageDownsampleThreshold=1.0",
-            "-dGrayImageDownsampleThreshold=1.0",
-            "-dColorImageDownsampleType=/Subsample",
-            "-dGrayImageDownsampleType=/Subsample"
+            "-dColorImageResolution=72",
+            "-dGrayImageResolution=72",
+            "-dMonoImageResolution=72",
+            "-dColorImageDownsampleType=/Bicubic",
+            "-dGrayImageDownsampleType=/Bicubic",
+            "-dColorImageFilter=/DCTEncode",
+            "-dGrayImageFilter=/DCTEncode"
         ])
     elif level == "media":
         base_cmd.extend([
             "-dPDFSETTINGS=/ebook", 
-            "-dColorImageResolution=120",
-            "-dGrayImageResolution=120",
-            "-dMonoImageResolution=120",
-            "-dDownsampleColorImages=true"
+            "-dColorImageResolution=150",
+            "-dGrayImageResolution=150",
+            "-dMonoImageResolution=150",
+            "-dColorImageFilter=/DCTEncode"
         ])
     else: # leve
         base_cmd.extend([
             "-dPDFSETTINGS=/printer",
-            "-dColorImageResolution=200",
-            "-dGrayImageResolution=200",
-            "-dMonoImageResolution=200",
-            "-dDownsampleColorImages=true"
+            "-dColorImageResolution=300",
+            "-dGrayImageResolution=300",
+            "-dMonoImageResolution=300",
+            "-dColorImageFilter=/DCTEncode"
         ])
         
     base_cmd.extend([f"-sOutputFile={output_path}", input_path])
