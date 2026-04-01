@@ -69,32 +69,45 @@ def compress_pdf(input_path, output_path, level="media", progress_callback=None)
     if level == "extrema":
         base_cmd.extend([
             "-dPDFSETTINGS=/screen", 
-            "-dColorImageResolution=72",
-            "-dGrayImageResolution=72",
-            "-dMonoImageResolution=72",
-            "-dColorImageDownsampleType=/Bicubic",
-            "-dGrayImageDownsampleType=/Bicubic",
+            "-dColorImageResolution=65",
+            "-dGrayImageResolution=65",
+            "-dMonoImageResolution=65",
+            "-dDownsampleColorImages=true",
+            "-dDownsampleGrayImages=true",
+            "-dColorImageDownsampleThreshold=1.0",
+            "-dGrayImageDownsampleThreshold=1.0",
+            "-dColorImageDownsampleType=/Subsample",
+            "-dGrayImageDownsampleType=/Subsample",
             "-dColorImageFilter=/DCTEncode",
-            "-dGrayImageFilter=/DCTEncode"
+            "-dGrayImageFilter=/DCTEncode",
+            "-c", ".setpdfwrite << /ColorImageDict << /QFactor 0.20 /Blend 1 >> >> setdistillerparams",
+            "-f"
         ])
     elif level == "media":
         base_cmd.extend([
             "-dPDFSETTINGS=/ebook", 
-            "-dColorImageResolution=150",
-            "-dGrayImageResolution=150",
-            "-dMonoImageResolution=150",
+            "-dColorImageResolution=120",
+            "-dGrayImageResolution=120",
+            "-dMonoImageResolution=120",
+            "-dDownsampleColorImages=true",
             "-dColorImageFilter=/DCTEncode"
         ])
     else: # leve
         base_cmd.extend([
             "-dPDFSETTINGS=/printer",
-            "-dColorImageResolution=300",
-            "-dGrayImageResolution=300",
-            "-dMonoImageResolution=300",
+            "-dColorImageResolution=200",
+            "-dGrayImageResolution=200",
+            "-dMonoImageResolution=200",
+            "-dDownsampleColorImages=true",
             "-dColorImageFilter=/DCTEncode"
         ])
         
-    base_cmd.extend([f"-sOutputFile={output_path}", input_path])
+    if "-f" not in base_cmd:
+        base_cmd.extend([f"-sOutputFile={output_path}", input_path])
+    else:
+        # Se usarmos -c ... -f, o OutputFile precisa vir antes do -c
+        base_cmd.insert(base_cmd.index("-c"), f"-sOutputFile={output_path}")
+        base_cmd.append(input_path)
     
     creationflags = subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
     process = subprocess.Popen(
@@ -121,5 +134,16 @@ def compress_pdf(input_path, output_path, level="media", progress_callback=None)
     process.wait()
     if process.returncode != 0:
         raise Exception("O Ghostscript falhou ao comprimir este arquivo.")
+
+    # Post-process ultracompression usando PyMuPDF (deflete os excessos que sobraram do canvas)
+    if fitz:
+        try:
+            doc = fitz.open(output_path)
+            tmp_path = f"{output_path}.tmp"
+            doc.save(tmp_path, garbage=4, deflate=True, clean=True, linear=True)
+            doc.close()
+            os.replace(tmp_path, output_path)
+        except Exception:
+            pass
 
     return True
